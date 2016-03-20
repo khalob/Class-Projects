@@ -1,0 +1,15 @@
+--           Chatper 6
+-- Build.settings for Sound Board
+--    author: Khalob Cognata
+
+settings =
+{
+	orientation =
+	{
+		default ="landscapeRight",
+		supported =
+		{
+			"landscapeLeft"
+		},
+	},
+}
