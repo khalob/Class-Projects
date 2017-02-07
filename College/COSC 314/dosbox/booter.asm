@@ -106,30 +106,29 @@ start:
 	lea bp,[line7]	;Load the offset address of string into BP, es:bp
 					;Same as mov bp, msg  
 	int 10h
-
 ;;Jump to date file
 goToDate:
     xor ax, ax ; clear ax
-    mov ds, ax        ; DS=0
+    mov ds, ax  ; DS=0
 
-	mov ax, ds
-  	mov es, ax          ; es == ds
+    mov ax, ds
+    mov es, ax  ; es == ds
 
-   	xor bx,bx   ;Ensure that the buffer offset is 0!
-   	mov ah,0x2  ;2 = Read floppy
-   	mov al,0x1  ;Reading one sector
+    xor bx,bx   ;Ensure that the buffer offset is 0!
+    mov ah,0x2  ;2 = Read floppy
+    mov al,0x1  ;Reading one sector
     mov ch,1    ; Cylinder 0
     mov cl,2    ; Sector 2
     mov dh,0    ; Head 0
-	mov dl,0  ; floppy drive
+    mov dl,0  ; floppy drive
     mov bx,0x5678 
     mov es,bx   ; 
-	xor bx, bx          ; BX = 0. So ES:BX=0x5678:0x0000
+    xor bx, bx          ; BX = 0. So ES:BX=0x5678:0x0000
     mov bx,0x1234 ; BX = 0x1234. So ES:BX=0x5678:0x1234
-	int 13h
+    int 13h
 
-	jc goToDate ;try again if it fails
-	jmp  word 0x5678:0x1234
+    jc goToDate ;try again if it fails
+    jmp  word 0x5678:0x1234
 
 ;;Data
 
